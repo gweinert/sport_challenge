@@ -1,0 +1,4 @@
+server/service_account_key.json
+server/secrets.json
+server/node_modules/*
+client/node_modules/*
