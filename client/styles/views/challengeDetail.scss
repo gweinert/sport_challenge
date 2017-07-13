@@ -1,0 +1,12 @@
+.challenge-detail{
+    
+    .detail-image{
+        min-height: 400px;
+        max-height: 400px;
+        position: relative;
+        left: -20px;
+        width: calc(100% + 40px);
+        background-size: cover;
+        margin: 0 auto 30px;
+    }
+}

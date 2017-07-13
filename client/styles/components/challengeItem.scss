@@ -1,0 +1,33 @@
+ .challenge-item{ 
+     position: relative;
+    text-align: left;
+
+    .top-info{
+        
+        .rank{
+            color: #fff;
+        }
+        
+        h4{
+            background-color: transparent;
+            display: inline-block;
+            margin: 0 10px; 
+        }
+    
+    }
+
+    .inner{
+        padding-left: 40px;
+        padding-bottom: 20px;
+        position: relative;
+    }
+
+    &::after{
+        content: '';
+        height: 1px;
+        background-color: #A9A9A9;
+        width: 100%;
+        position: absolute;
+        right: -35px;
+    }
+}

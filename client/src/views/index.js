@@ -7,6 +7,8 @@ const ChallengeEdit = require('./Challenge/Edit')
 const ReplyCreate = require('./Reply/Create')
 const UserOwned = require('../components/userOwned')
 
+// const ListView = require('./ListView');
+
 const views = [
     ['/', (state, actions) => <Home state={state} actions={actions}/>],
     ['/challenge-create', (state, actions) => <CreateChallenge state={state} actions={actions}/>],

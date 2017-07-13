@@ -1,0 +1,165 @@
+body {
+  font-family: sans-serif;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // min-height: calc(100vh - 40px);
+  margin: 0;
+  // font-size: calc(10px + 2vmin);
+  font-size: 16px;
+  font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
+
+}
+
+.container {
+  padding: 20px 30px;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+}
+
+section > *+* {
+  margin-left: 2rem;
+}
+
+button {
+  padding: 0 1rem;
+  border: none;
+  font-size: 2rem;
+  height: 3rem;
+}
+
+h1 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-weight: 100;
+  font-size: 2.5rem;
+}
+
+h4 {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+p {
+  color: $grey;
+  margin-top: 0;
+  font-weight: 100;
+  margin: 0;
+  letter-spacing: 1px;
+
+  &.small{
+    font-size: 14px;
+  }
+}
+
+.count {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 4rem;
+  color: #333;
+}
+
+[disabled] + .count {
+  color: #999;
+}
+
+.add {
+  background-color: mediumseagreen;
+  color: #fff;
+}
+
+.sub {
+  background-color: mediumvioletred;
+  color: #fff;
+}
+
+.sub[disabled] {
+  opacity: .5;
+}
+
+.reply{
+  position: relative;
+}
+
+.circle{
+  display: inline-block;
+  color: #fff;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+
+  &-big {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+  }
+
+  &-outline {
+    border: 1px solid black;
+  }
+}
+
+.highlight{
+  &-1{
+    color: #B000B5;
+    background-color: #B000B5;
+    border-color: #B000B5;
+  }
+  &-2{
+    color: #c55;
+    background-color: #c55;
+    border-color: #c55;
+  }
+  &-3{
+    color: #10adad;
+    background-color: #10adad;
+    background-color: #10adad;
+    
+  }
+  &-4{
+    color: #B20;
+    background-color: #B20;
+    border-color: #B20;
+    
+  }
+  &-5{
+    color: #c0ffee;
+    background-color: #c0ffee;
+    border-color: #c0ffee;
+  }
+  &-6{
+    color: #208075;
+    background-color: #208075;
+    border-color: #208075;
+    
+  }
+   &-7{
+    color: #60D;
+    background-color: #60D;
+    border-color: #60D;
+    
+  }
+   &-8{
+    color: #7EABA6;
+    background-color: #7EABA6;
+    border-color: #7EABA6;
+    
+  }
+   &-9{
+    color: #FA6607;
+    background-color: #FA6607;
+    border-color: #FA6607;
+    
+  }
+  &-10{
+    color: #716e25;
+    background-color: #716e25;
+    border-color: #716e25;
+    
+  }
+}
+

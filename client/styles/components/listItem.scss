@@ -1,0 +1,16 @@
+.list-item{
+   position: relative;
+    padding: 20px 0px;
+
+    .reply-preview{
+        display: inline-block;
+        position: absolute;
+        right: 0;
+        bottom: 30px;
+        border-width: 1px;
+        border-style: solid;
+        background-color: transparent;
+        cursor: pointer;
+    }
+
+}

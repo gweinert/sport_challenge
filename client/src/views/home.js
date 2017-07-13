@@ -1,23 +1,15 @@
-const { h }     = require('hyperapp')
-const Button    = require('../components/button')
-const List      = require('./Challenge/List')
+const { h }         = require('hyperapp')
+const FilterList    = require('../components/filterList')
+const Nav           = require('../components/nav')
 
 const Home = ({state, actions}) => {
-    console.log("home stata", state)
+    console.log("home state", state)
     return(
         <div>
-            <div>Home</div>
-            
-            {state.user.loggedIn ? "" : <a href="https://www.facebook.com/v2.9/dialog/oauth?client_id=335734803514193&redirect_uri=http://localhost:8080/&response_type=token">
-                Facebook
-            </a>}
-            <Button
-                actions={actions}
-                loggedIn={state.user.loggedIn}
-                type={"button"}
-                to={`/challenge-create`}
-                >Create Challenge</Button>
-            <List state={state} actions={actions} />
+            <Nav state={state} actions={actions} />
+            <div class="container">
+                <FilterList state={state} actions={actions} list={state.data.challenges}/>
+            </div>
         </div>
     )
 }

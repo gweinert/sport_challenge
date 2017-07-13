@@ -17,7 +17,7 @@ module.exports = function webpackStuff(env) {
   return {
     entry: [
       './src/index.js',
-      './styles/app.css',
+      './styles/app.scss',
     ],
     output: {
       filename: 'bundle.js',
@@ -43,6 +43,16 @@ module.exports = function webpackStuff(env) {
         use: ExtractTextPlugin.extract({
           use: 'css-loader?importLoaders=1',
         }),
+      }, {
+        test: /\.scss$/,
+            use: ExtractTextPlugin.extract({
+                use: [
+                  // {  loader: "style-loader"}, // creates style nodes from JS strings {
+                        { loader: "css-loader" },// translates CSS into CommonJS
+                        { loader: "sass-loader" }, // compiles Sass to CSS
+                        { loader: "import-glob-loader" }
+                      ]
+            })
       }],
     },
     plugins,
