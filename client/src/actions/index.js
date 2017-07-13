@@ -218,7 +218,9 @@ export default {
       }
 
       return({challengeFilter: filterOn})
-    }
+    },
+
+    playVideo: (state, actions, filepath) => ({videoPathPlaying: filepath})
 
     
 };

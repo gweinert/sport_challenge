@@ -1,4 +1,8 @@
 $grey: #A9A9A9;
+$lightGrey: #e6e6e6;
+$playSize: 50px;
+$playRatio:1.2;
+$transition-time:0.3s;
 
 @import "global.scss";
 @import "./views/*";

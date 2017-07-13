@@ -1,0 +1,28 @@
+.reply-button{
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0 30px 0 0;
+
+    h4{
+        margin: 15px 0;
+    }
+
+    form{
+        position: absolute;
+        top: 0;
+        opacity: 0;
+        cursor: pointer;
+        width: 100%;
+    }
+
+    input{
+        width: 100%;
+    }
+    
+    input[type="file"]{
+        cursor: pointer;
+        padding: 20px 0;
+    }
+
+}

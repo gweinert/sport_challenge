@@ -23,6 +23,12 @@ section > *+* {
   margin-left: 2rem;
 }
 
+article{
+  max-width: 600px;
+  width: 100%;
+  margin: 0 auto;
+}
+
 button {
   padding: 0 1rem;
   border: none;
@@ -51,6 +57,16 @@ p {
 
   &.small{
     font-size: 14px;
+  }
+}
+
+.button{
+  cursor: pointer;
+  opacity: 1;
+  transition: 0.3s opacity ease;
+
+  &:hover{
+    opacity: 0.7;
   }
 }
 

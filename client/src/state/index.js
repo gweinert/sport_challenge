@@ -7,5 +7,6 @@ export default {
     loggedIn: false,
     profile: {}
   },
-  challengeFilter: "all"
+  challengeFilter: "all",
+  videoPathPlaying: ""
 };

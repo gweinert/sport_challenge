@@ -15,7 +15,7 @@ const userButton = ({state, actions, onclick, item}, children) => {
 
     if(canEdit) {
         return(
-            <p onclick={onclick}>{children}</p>
+            <p class="user-button button" onclick={onclick}>{children}</p>
         )
     } else return ""
 

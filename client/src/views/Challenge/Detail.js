@@ -17,25 +17,31 @@ const ChallengeDetail = module.exports = ({state, actions}) => {
                     class="challenge-image detail-image" 
                     style={{backgroundImage: `url("${challenge.images}")`}}
                 />
-                <ChallengeItem state={state} actions={actions} item={challenge} index={challengeIndex} />
-                <ReplyButton state={state} actions={actions} challengeIndex={challengeIndex}/>
-                <UserButton 
-                    state={state}
-                    actions={actions}
-                    onclick={() => actions.router.go(`/challenge-edit/${challengeIndex}`)}
-                    item={challenge}
-                >
-                    Edit
-                </UserButton>
-                <UserButton 
-                    state={state}
-                    actions={actions}
-                    onclick={(e) => actions.removeChallenge(challenge._id)}
-                    item={challenge}
-                >
-                    Delete
-                </UserButton>
-                <ReplyList state={state} actions={actions} replies={sortedReplies} challenge={challenge}/>
+                <div class="container">
+                    <ChallengeItem state={state} actions={actions} item={challenge} index={challengeIndex}>
+                        <p class="description">{challenge.description}</p>
+                        <UserButton 
+                            state={state}
+                            actions={actions}
+                            onclick={() => actions.router.go(`/challenge-edit/${challengeIndex}`)}
+                            item={challenge}
+                        >
+                            Edit
+                        </UserButton>
+                        <UserButton 
+                            state={state}
+                            actions={actions}
+                            onclick={(e) => actions.removeChallenge(challenge._id)}
+                            item={challenge}
+                        >
+                            Delete
+                        </UserButton>
+                        <ReplyButton state={state} actions={actions} challenge={challenge}/>
+                    </ChallengeItem>
+                    
+                    
+                    <ReplyList state={state} actions={actions} replies={sortedReplies} challenge={challenge}/>
+                </div>
             </div>
         )
     } else return <div/>

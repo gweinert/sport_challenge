@@ -1,9 +1,44 @@
 .upvote{
-    width: 0;
-    height: 0;
+    width: 30px;
+    height: 30px;
     border-style: solid;
-    border-width: 0 20px 20px 20px;
-    border-color: transparent transparent #007bff transparent;
-    position: absolute;
-    left: -50px;
+    border-radius: 50%;
+    line-height: 30px;
+    text-align: center;
+    margin: 0 0 5px 0;
+    background-color: transparent;
+    
+
+    .checkmark{
+        display:inline-block;
+        top: -2px;
+        position: relative;
+        
+        &:after{
+            /*Add another block-level blank space*/
+            content: '';
+            display: block;
+        
+            /*Make it a small rectangle so the border will create an L-shape*/
+            width: 3px;
+            height: 6px;
+        
+            /*Add a white border on the bottom and left, creating that 'L' */
+            border: solid;
+            border-width: 0 2px 2px 0;
+        
+            /*Rotate the L 45 degrees to turn it into a checkmark*/
+            transform: rotate(45deg);
+        }
+    }
+
+    &.check-complete {
+        border-color: inherit;
+        
+        .checkmark{
+            &:after{
+                border-color: inherit;
+            }
+        }
+    }
 }
