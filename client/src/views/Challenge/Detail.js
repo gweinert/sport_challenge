@@ -1,8 +1,12 @@
 const { h }         = require('hyperapp')
-const ReplyButton   = require('../../components/replyButton')
-const UserButton    = require('../../components/userButton')
-const ChallengeItem = require('../../components/challengeItem')
-const ReplyList     = require('../../components/replyList')
+const ReplyButton   = require('../../components/Reply/replyButton')
+const CreatorButton = require('../../components/Button/creatorButton')
+const BackButton    = require('../../components/Button/backButton')
+const ChallengeItem = require('../../components/Challenge/challengeItem')
+const List          = require('../../components/List/list')
+const ReplyItem     = require('../../components/Reply/ReplyItem')
+const Loader        = require('../../components/loader')
+const Image         = require('../../components/Image/image')
 
 const ChallengeDetail = module.exports = ({state, actions}) => {
     
@@ -10,37 +14,53 @@ const ChallengeDetail = module.exports = ({state, actions}) => {
         const challengeIndex = state.router.params.id
         const challenge = state.data.challenges[challengeIndex]
         const sortedReplies = challenge.replies.sort( (a,b) => b.votes.length - a.votes.length)
+                //{/*<div
+                    //class="challenge-image detail-image" 
+                    //style={{backgroundImage: `url("${challenge.image}")`}}
+                ///>*/}
         
         return(
             <div class="challenge-detail">
-                <div
-                    class="challenge-image detail-image" 
-                    style={{backgroundImage: `url("${challenge.images}")`}}
+                <Loader state={state} />
+                <BackButton actions={actions}/>
+                <Image 
+                    className={`challenge-image detail-image`} 
+                    state={state} 
+                    actions={actions} 
+                    src={challenge.image} 
                 />
                 <div class="container">
                     <ChallengeItem state={state} actions={actions} item={challenge} index={challengeIndex}>
                         <p class="description">{challenge.description}</p>
-                        <UserButton 
+                        <CreatorButton 
                             state={state}
                             actions={actions}
                             onclick={() => actions.router.go(`/challenge-edit/${challengeIndex}`)}
                             item={challenge}
                         >
                             Edit
-                        </UserButton>
-                        <UserButton 
+                        </CreatorButton>
+                        <CreatorButton 
                             state={state}
                             actions={actions}
-                            onclick={(e) => actions.removeChallenge(challenge._id)}
+                            onclick={(e) => actions.challenge.remove(challenge._id)}
                             item={challenge}
                         >
                             Delete
-                        </UserButton>
+                        </CreatorButton>
                         <ReplyButton state={state} actions={actions} challenge={challenge}/>
                     </ChallengeItem>
                     
-                    
-                    <ReplyList state={state} actions={actions} replies={sortedReplies} challenge={challenge}/>
+                    <List state={state}>
+                        {sortedReplies.map(reply => 
+                            <ReplyItem 
+                                state={state} 
+                                actions={actions} 
+                                reply={reply} 
+                                challenge={challenge}
+                            />
+                        )}
+                    </List>
                 </div>
             </div>
         )

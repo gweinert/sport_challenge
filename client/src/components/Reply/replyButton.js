@@ -8,7 +8,7 @@ const replyButton = ({state, actions, challenge}) => {
                     Reply
                 </h4>
                 <form action="http://localhost:3000/reply/" method="POST">
-                    <input type="file" name="Reply" onchange={(e) => actions.submitForm(e)} />
+                    <input type="file" name="Reply" onchange={(e) => actions.form.submit(e)} />
                     <input type="hidden" name="ChallengeID" value={challenge._id} />
                 </form>
             </div>

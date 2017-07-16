@@ -8,5 +8,9 @@ export default {
     profile: {}
   },
   challengeFilter: "all",
-  videoPathPlaying: ""
+  videoPathPlaying: "",
+  loading: false,
+  leaderboard: [],
+  leaderboardCategory: "total",
+  imagesLoaded: {}
 };

@@ -1,5 +1,5 @@
 const { h } = require('hyperapp')
-const UpVoteButton = require('./upvoteButton')
+const UpVoteButton = require('../Button/upvoteButton')
 const ReplyMedia    = require('./replyMedia')
 
 const replyItem = module.exports = ({state, actions, reply, challenge}) => {

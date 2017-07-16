@@ -3,8 +3,6 @@ const { h } = require('hyperapp')
 
 const userOwned = ({state, actions, item}, children) => {
     //there can only be a few things to edit. a challenge, a reply, and a profile
-
-    //
     var isUser = false
     if(state.user.loggedIn && (state.data && state.data.challenges) ) {
         //item is challenge
@@ -14,7 +12,7 @@ const userOwned = ({state, actions, item}, children) => {
     }
 
     if(isUser) {
-        return children
+        return {children}
     } else return <div>404</div>
 
 }

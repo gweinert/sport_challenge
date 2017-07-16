@@ -1,5 +1,7 @@
-var upload = require('./upload')
+const upload = require('./upload')
+const remove = require('./remove')
 
 module.exports = {  
-  upload: upload
+  upload: upload,
+  remove: remove
 }

@@ -14,7 +14,7 @@ const ReplyMedia = module.exports = ({state, actions, filepath}) => {
             {isVideo ? <div class="video-container" onclick={(e) => {
                 console.log(e)
                 e.srcElement.offsetParent.querySelector('video').play() // play closest video
-                actions.playVideo(filepath) //update state to hide video play button
+                actions.reply.playVideo(filepath) //update state to hide video play button
                 }}>
                         <div class={`play ${hidePlay}`}></div>
                             <video>

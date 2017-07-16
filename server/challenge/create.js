@@ -1,4 +1,5 @@
 var cloud = require('../GoogleCloudService')
+var {ObjectId} = require('mongodb')
 
 const challengeImageUpload = (req, res, next) => {
     console.log("challengImage")
@@ -15,27 +16,31 @@ const createChallenge = (req, res, next) => {
     if(req.file) {
         image = req.file.cloudStoragePublicUrl
     }
+
+    var newChallenge = {
+        _id: ObjectId(),
+        name: req.body["Name"],
+        description: req.body["Description"],
+        category: req.body["Category"],
+        userID: req.user._id,
+        username: req.user.firstName,
+        votes: [],
+        image: image,
+        location: { lat: req.body["Latitude"], long: req.body["Longitude"]},
+        locationName: req.body["LocationName"],
+        replies: [],
+        theme: Math.floor((Math.random() * 10) + 1),
+        createdAt: dateMs
+    }
     
-    db.collection('challenges').insertOne(
-        {
-            name: req.body["Name"],
-            description: req.body["Description"],
-            category: req.body["Category"],
-            userID: req.user._id,
-            username: req.user.firstName,
-            // votes: {
-            //     number: 0,
-            //     timeOfVoteMs: dateMs, //initial vote cant be zero
-            //     votesPerHour: 0
-            // },
-            votes: [],
-            images: image,
-            location: { lat: req.body["Latitude"], long: req.body["Longitude"]},
-            locationName: req.body["Location"],
-            replies: [],
-            createdAt: dateMs
-        }
-    )
+    db.collection('challenges').insertOne(newChallenge)
+        .then(({err, r}) => {
+            req.assert.equal(null, err)
+            
+            if(err != null) { res.send({success: 0}) }
+            
+            res.send({success: 1, challenge: newChallenge})
+        })
 
 }
 

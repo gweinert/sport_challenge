@@ -16,23 +16,31 @@ const createChallenge = (req, res, next) => {
     if(req.file) {
         file = req.file.cloudStoragePublicUrl
     }
+
+    var newReply = {
+         _id: ObjectId(),
+        userID: req.user._id,
+        votes: [],
+        file: file,
+        completed: false,
+        dateCreated: dateMs
+    }
     
      db.collection('challenges')
         .updateOne(
             { _id : ObjectId(req.body["ChallengeID"]) }, 
-            { $addToSet: { replies: {
-                _id: ObjectId(),
-                userID: req.user._id,
-                votes: [],
-                file: file,
-                completed: false,
-                dateCreated: dateMs
-            } } }, 
+            { $addToSet: { replies: newReply } }, 
         function(err, r) {
             req.assert.equal(null, err);
             req.assert.equal(1, r.matchedCount);
             req.assert.equal(1, r.modifiedCount);
+            if(err) res.json({success: 0, error: "database error on new reply"})
             console.log(`Updated the document with the field _id equal to ${req.body["ChallengeID"]}`);
+            res.json({
+                success: 1, 
+                reply: newReply, 
+                challenge: { _id: req.body["ChallengeID"]}
+            })
         }
     )
 }

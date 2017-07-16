@@ -1,0 +1,30 @@
+.leaderboard{
+    position: relative;
+    text-align: center;
+
+    .leaderboard-item{
+        display: flex;
+        align-items: center;
+        padding: 20px 20px;
+        border-top: 1px solid $grey;
+        border-bottom: 1px solid $grey;
+        
+
+        .rank, .profile-img, .info{
+            margin: 0 15px;
+        }
+
+        .info{
+            text-align: left;
+        }
+    }
+
+    .profile-img{
+
+        img{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+    }
+}

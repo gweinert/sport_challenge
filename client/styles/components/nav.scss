@@ -1,12 +1,13 @@
 
 nav{
-    margin: 0 0 50px 0;
+    margin: 0 0 70px 0;
 }
 
 #menuToggle {
     border: 1px solif green;
   display: block;
-  position: relative;
+//   position: relative;
+    position: fixed;
   top: 50px;
   left: 25px;
   width: calc(100% - 25px);

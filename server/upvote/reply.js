@@ -28,7 +28,7 @@ module.exports = (req, res, next) => {
                     reply.votes.push(newVote)
 
                     if(reply.votes.length > 2) {
-                        reply.completedChallenge = true
+                        reply.completed = true
                     }
                 }
             })

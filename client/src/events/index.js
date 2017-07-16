@@ -6,13 +6,17 @@
 
 module.exports = {
     loaded: (state, actions) => {
-        actions.fetchContent()
-        actions.checkLogin()
+        actions.auth.checkLogin()
+        actions.location.getLocation()
+        actions.challenge.fetchAll()
     },
     
     route: (state, actions, data, emit) => {
-        console.log("route", data);
-        // actions.checkLogin();   
+        
+        if(data.match == "/leaderboard") {
+            actions.leaderboard.fetchInfo()
+        }
+
     }
     
   }

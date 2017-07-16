@@ -1,11 +1,14 @@
 const { h }         = require('hyperapp')
-const UpVoteButton  = require('./upvoteButton')
+const UpVoteButton  = require('../Button/upvoteButton')
 
-module.exports = ({state, actions, item, index, onclick}, children) => {
-    const hightlightNum = Math.floor((Math.random() * 10) + 1);
+module.exports = ({state, actions, item, index}, children) => {
+    const hightlightNum = item.theme || 1
     
     return(
-        <div class={`challenge-item `}>
+        <div 
+            class={`challenge-item`} 
+            onclick={() => actions.router.go(`/challenge-detail/${index}`)}
+        >
             <div class={`top-info `}>
                 <div class={`rank circle highlight-${hightlightNum}`}>
                     {index + 1}

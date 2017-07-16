@@ -1,13 +1,11 @@
 
-const { h } = require('hyperapp')
-const Home = require('./Home')
-const CreateChallenge = require('./Challenge/Create')
-const ChallengeDetail = require('./Challenge/Detail')
-const ChallengeEdit = require('./Challenge/Edit')
-const ReplyCreate = require('./Reply/Create')
-const UserOwned = require('../components/userOwned')
-
-// const ListView = require('./ListView');
+const { h }             = require('hyperapp')
+const Home              = require('./Home/Index')
+const CreateChallenge   = require('./Challenge/Create')
+const ChallengeDetail   = require('./Challenge/Detail')
+const ChallengeEdit     = require('./Challenge/Edit')
+const UserOwned         = require('../components/userOwned')
+const Leaderboard       = require('./Leaderboard/Index')
 
 const views = [
     ['/', (state, actions) => <Home state={state} actions={actions}/>],
@@ -19,10 +17,7 @@ const views = [
         </UserOwned>
         )
     ],
-    ['/reply/create/:index', (state, actions) => (
-        state.user.loggedIn ? <ReplyCreate state={state} actions={actions}/> : ""
-    )
-    ],
+    ['/leaderboard', (state, actions) => <Leaderboard state={state} actions={actions}/>],
 
     ['*', (state, actions) => <div>404</div>]
 ]

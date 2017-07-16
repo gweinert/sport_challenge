@@ -1,0 +1,107 @@
+.challenge-form{
+    height: 100vh;
+
+    h1{
+        color: #afb1be;
+        margin: 20px auto;
+        width: 80%;
+        text-align: center;
+    }
+
+    form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+    }
+}
+
+.form-bg{
+    background: linear-gradient(135deg, #EA5C54 0%, #bb6dec 100%);
+    
+}
+
+.form{
+    max-width: 600px;
+    width: 100%;
+    position: relative;
+    background: linear-gradient(45deg, #35394a 0%, #1f222e 100%);
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    margin: 0 auto;
+
+    form{
+        // width: calc(100% - 20px);
+        width: 100%;
+    }
+
+    input, textarea, select{
+        width: calc(100% - 20px);
+        height: 30px;
+        color: #afb1be;
+        margin-top: -2px;
+        background: #32364a;
+        left: 0;
+        // padding: 10px 65px;
+        padding: 10px;
+        border-top: 2px solid #393d52;
+        border-bottom: 2px solid #393d52;
+        border-right: none;
+        border-left: none;
+        outline: none;
+        box-shadow: none;
+    }
+
+    .select{
+        padding: 10px;
+        background: #32364a;
+        width: calc(100% - 20px);
+    }
+
+    select {
+        border: none;
+    }
+
+    textarea{
+        resize: none;
+        height: 50px;
+        min-height: 50px;
+    }
+
+    button{
+        margin: 20px auto;
+        max-width: 120px;
+        width: 100%;
+        border-radius: 50px;
+        background: transparent;
+        padding: 10px 10px;
+        border: 2px solid #DC6180;
+        color: #DC6180;
+        text-transform: uppercase;
+        font-size: 11px;
+        transition-property: background,color;
+        transition-duration: .2s;
+        cursor: pointer;
+        text-align: center;
+
+        &:hover{
+            background: #DC6180;
+            color: #Fff;
+        }
+    }
+
+    ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #afb1be;
+    }
+    ::-moz-placeholder { /* Firefox 19+ */
+    color: #afb1be;
+    }
+    :-ms-input-placeholder { /* IE 10+ */
+    color: #afb1be;
+    }
+    :-moz-placeholder { /* Firefox 18- */
+    color: #afb1be;
+    }
+}
