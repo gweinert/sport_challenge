@@ -1,46 +1,90 @@
 const {ObjectId} = require('mongodb');
 
+function userVoted(reply, userID) {
+    return reply.votes.some(vote => vote.userID == userID)
+}
+
 module.exports = (req, res, next) => {
     
-    const dateMs = new Date().getTime()
-    const db = req.db
-    const challengeId = req.params.challengeId
-    const replyId = req.params.id
+    const collection        = req.db.collection("challenges")
+    const challengeId       = req.params.challengeId
+    const replyId           = req.params.id
+    const nowMs             = new Date().getTime()
+    var userVotedFlag = false
+    var foundFlag = false
     console.log("req", req.params)
-    var completedChallenge = false
     
-    const collection = db.collection("challenges")
-    // const users = db.collection("users")
 
-    var nowMs = new Date().getTime()
-    var newVote = {
+    const newVote = {
                 _id: ObjectId(),
-                userID: req.user._id,
+                userID: req.body["UserID"],
                 createdAt: nowMs
             }
 
     collection.findOne(
-        { _id: ObjectId(challengeId) },
+        // { _id: ObjectId(challengeId) },
+        { "replies._id":  ObjectId(replyId) },
         function(err, challenge) {
+            if (err) {
+                console.log("err")
+                return res.json({success: 0, err})
+            }
+            console.log("challID", challenge.replies)
+            // console.log("replyID", ObjectId(replyId))
             
-            challenge.replies.forEach(reply => {
-                if(reply._id == replyId) {
+            challenge.replies.every(reply => {
+                
+                //don't use objectID since we converted to an array
+                if (reply._id == replyId) {
+                    
+                    console.log("FOUND?", reply)
+                    
+                    foundFlag = true
+                    
+                    if (userVoted(reply, newVote.userID) || newVote.userID == undefined) {
+                        console.log("user voted already")
+                        userVotedFlag = true
+                        return false
+                    }
+                    
+                    console.log("create upvote reply", req.body)
+                    
                     reply.votes.push(newVote)
 
-                    if(reply.votes.length > 2) {
+                    if (reply.votes.length > 2) {
                         reply.completed = true
                     }
+
+                    //exit loop early
+                    return false
+
                 }
             })
 
-            console.log("challenge", challenge)
+            console.log("USERVORE FLAG", userVotedFlag)
 
-            collection.save(challenge, function(err, r) {
-                req.assert.equal(null, err);
-                // req.assert.equal(1, r.matchedCount);
-                // req.assert.equal(1, r.modifiedCount);
-                res.send({success: 1, newVote: newVote})
-            })
+
+            if (userVotedFlag) {
+                res.json({success: 0, err: "Already exists"})
+            } else if (!foundFlag) {
+                console.log("never found")
+                res.json({success: 0, err: "Could not find in db"})
+            } else {
+
+                collection.save(challenge, function(err, r) {
+                    req.assert.equal(null, err);
+                    if (err) {
+                        res.json({success: 0, err})
+                    }
+
+                    console.log("created vote! for reply")
+                    // req.assert.equal(1, r.matchedCount);
+                    // req.assert.equal(1, r.modifiedCount);
+                    res.json({success: 1, newVote: newVote})
+                })
+            }
+
+            
 
             // collection.find({
             //     replies: {

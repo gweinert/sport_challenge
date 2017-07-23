@@ -10,7 +10,7 @@ var upload = multer({limits: { fileSize: maxSize }})
 router.get('/', challenge.all)
 
 router.post('/',
-    isAuthenticated,
+    // isAuthenticated,
     upload.single('Image'),
     challenge.create)
 
@@ -19,8 +19,10 @@ router.post('/edit',
     upload.none(), 
     challenge.edit)
 
-router.get('/remove/:challengeId', 
-    isAuthenticated,
-    challenge.remove)
+router.post('/remove/:id', 
+    // isAuthenticated,
+    upload.none(),
+    challenge.remove
+)
 
 module.exports = router

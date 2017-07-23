@@ -7,7 +7,7 @@ const challengeImageUpload = (req, res, next) => {
 }
 
 const createChallenge = (req, res, next) => {
-    console.log("Create Challenge")
+    console.log("Create Challenge", req.file)
     console.log(req.body)
     
     const db = req.db
@@ -22,8 +22,8 @@ const createChallenge = (req, res, next) => {
         name: req.body["Name"],
         description: req.body["Description"],
         category: req.body["Category"],
-        userID: req.user._id,
-        username: req.user.firstName,
+        userID: req.body["UserID"],
+        username: req.body["Username"],
         votes: [],
         image: image,
         location: { lat: req.body["Latitude"], long: req.body["Longitude"]},

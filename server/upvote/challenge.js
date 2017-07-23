@@ -14,6 +14,10 @@ function getVotesPerHour(vote) {
 
 }
 
+function userVoted(challenge, userID) {
+    return challenge.votes.some(vote => vote.userID == userID)
+}
+
 
 module.exports = (req, res, next) => {
     
@@ -23,11 +27,12 @@ module.exports = (req, res, next) => {
 
     const collection = db.collection("challenges")
     const nowMs = new Date().getTime()
-    var newVote = {
+    const newVote = {
         _id: ObjectId(),
-        userID: req.user._id,
+        userID: req.body["UserID"],
         createdAt: nowMs
     }
+
 
     collection.findOne({ _id: ObjectId(req.params.id)})
         .then((item, err) => {
@@ -35,23 +40,23 @@ module.exports = (req, res, next) => {
 
 
             // var votesPerHour = getVotesPerHour(item.votes)
+            if (userVoted(item, newVote.userID) || newVote.userID == undefined) {
+                return res.json({success: 0, err: "Already voted"})
+            }
             
-
+            console.log("create upvote chall", req.body)
+            
              collection.updateOne({ _id : ObjectId(item._id) }, 
-                    // { $set: {
-                    //             votes: {
-                    //                 number: item.votes.number + 1,
-                    //                 timeOfVoteMs: nowMs,
-                    //                 votesPerHour: votesPerHour
-                    //             } 
-                    //         } 
-                    // },
                 { $addToSet: { votes: newVote } },
                 
                 function(err, r) {
                     req.assert.equal(null, err);
                     req.assert.equal(1, r.matchedCount);
                     req.assert.equal(1, r.modifiedCount);
+                    if(err){
+                        console.log("error", err)
+                        res.json({success: 0, err: err})
+                    }
                     console.log(`Updated the document with the field vote to ${item.votes + 1}`);
                     res.json({
                         success: 1, 

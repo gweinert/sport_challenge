@@ -6,7 +6,7 @@ export default {
             
             const formData = new FormData(form)
             const apiUrl = form.action
-            
+            console.log("formData")
             fetch(apiUrl, {
                 credentials: 'include',
                 method: form.method,

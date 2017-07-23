@@ -8,8 +8,15 @@ var isAuthenticated = require('../auth/index');
 
 
 router.post('/',
-    isAuthenticated,
+    // isAuthenticated,
     upload.single('Reply'), 
-    reply.create)
+    reply.create
+)
+
+router.post('/remove/:id', 
+    // isAuthenticated,
+    upload.none(),
+    reply.remove
+)
 
 module.exports = router

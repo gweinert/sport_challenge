@@ -5,6 +5,7 @@ module.exports = (req, res, next) => {
     
     collection.find({}).toArray(function(err, docs) {
         req.assert.equal(err, null);
+        console.log("hit all")
         res.json({challenges: docs})
     })
 }

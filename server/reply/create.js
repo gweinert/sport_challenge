@@ -1,12 +1,12 @@
 var cloud = require('../GoogleCloudService')
 var {ObjectId} = require('mongodb')
 
-const challengeImageUpload = (req, res, next) => {
+const replyImageUpload = (req, res, next) => {
     console.log("replyMedia")
     cloud.upload(req, res, next)
 }
 
-const createChallenge = (req, res, next) => {
+const createReply = (req, res, next) => {
     console.log("Create Reply")
     console.log(req.body)
     
@@ -19,7 +19,7 @@ const createChallenge = (req, res, next) => {
 
     var newReply = {
          _id: ObjectId(),
-        userID: req.user._id,
+        userID: req.body["UserID"],
         votes: [],
         file: file,
         completed: false,
@@ -45,4 +45,4 @@ const createChallenge = (req, res, next) => {
     )
 }
 
-module.exports = [ challengeImageUpload, createChallenge ]
+module.exports = [ replyImageUpload, createReply ]

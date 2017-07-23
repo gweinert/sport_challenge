@@ -14,6 +14,7 @@ var gcs = storage({
 var bucket = gcs.bucket(CLOUD_BUCKET)
 
 function sendUploadToGCS (req, res, next) {
+  console.log("sendUPloade with file...", req.file)
   var localFile = req.file;
   if (!localFile) {
     return next();

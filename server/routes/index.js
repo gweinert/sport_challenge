@@ -1,7 +1,7 @@
 const express       = require('express')
 const router        = express.Router()
 const passport      = require('passport')
-const challenges    = require('./challenges')
+const challenge     = require('./challenge')
 const upvote        = require('./upvote')
 const reply         = require('./reply')
 const user          = require('./user')
@@ -13,7 +13,7 @@ router.get('/', function (req, res) {
   console.log("user session", req.user)
 })
 
-router.use('/challenges', challenges)
+router.use('/challenge', challenge)
 router.use('/upvote', upvote)
 router.use('/reply', reply)
 router.use('/user', user)

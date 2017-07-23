@@ -6,7 +6,8 @@ const isAuthenticated = module.exports = (req, res, next) => {
 	if (req.isAuthenticated()) {
         console.log("is auth good to go!")
 		return next();
-    }
+	}
+	console.log("auth failed")
 	// if the user is not authenticated then redirect him to the login page
 	res.json({success: 0, error: "User is not authenticated"})
 }
